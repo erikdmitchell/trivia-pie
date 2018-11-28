@@ -83,28 +83,28 @@ def endGame():
     print("Congratualtions, " + str(name) + "! You have " + str(points) + " points." )
 
     updateHighScores(name, points)
+    displayHighScores()
 
 def updateHighScores(name, points):
     # load high scores
     highScoresData = loadJSONfile('highscores.json')
 
     # add to json
-    highScoresData["scores"].append({
-        "name": name,
-        "points": points
-    })
+    # highScoresData["scores"].append({
+    #     "name": name,
+    #     "points": points
+    # })
     
+    # double sort, first by name, then points
+    highScoresData["scores"] = sorted(highScoresData["scores"], key=lambda i : i['name'])
+    highScoresData["scores"] = sorted(highScoresData["scores"], key=lambda i : i['points'], reverse=True)
+
+    # write to file
     with open("highscores.json", "w") as outfile:
         json.dump(highScoresData, outfile, indent=4)
 
-
-    print(highScoresData["scores"])
-
-    # add score to array
-
-    # sort by score
-
-    # rewrite file
+def displayHighScores():
+    print("high scores here:")
 
 def main():
     loadQuestions()
