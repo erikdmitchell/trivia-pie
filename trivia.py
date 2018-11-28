@@ -5,13 +5,18 @@ import json
 questions = ''
 points = 0
 name = 'Steve'
+def loadQuestions():
+    global questions
 
-def loadJSONfile():
+    questions = loadJSONfile('questions.json')
+
+def loadJSONfile(filename):
     global questions
 
     # get the file and load the json
-    questions_json=open('questions.json').read()
-    questions = json.loads(questions_json)
+    json_data = open(filename).read()
+
+    return json.loads(json_data)
 
 def inputName():
     global name
@@ -30,6 +35,9 @@ def outputQuestions():
     for i in questions["questions"]:
         displayQuestion(i)
 
+    # end game
+    endGame()
+
 def displayQuestion(data):
     global points
 
@@ -47,30 +55,20 @@ def displayQuestion(data):
         print(str(counter) + ".", i) 
         counter = counter + 1
 
+    # loop until we have a valid answer
     while True:
         print("input answer")
         validInput = validateInput(answer, totalAnswers)
 
         if validInput == True:
             break
-# perhaps this is a while loop?
-    # enter answer
-    #answer = 2
-    #answer = 3
-
-    # validate input
-    
-# end while loop?
     
     # answer must be subtracted by 1 because array starts at 0
     answer = answer - 1
 
+    # if answer is correct, add points
     if (data["answers"][answer] == correctAnswer):
         points = points + 1
-
-    print(data["answers"][answer])
-    print(correctAnswer)
-    print(points)
 
 def validateInput(answer, totalAnswers):
     # check is number and is between our range
@@ -79,8 +77,37 @@ def validateInput(answer, totalAnswers):
 
     return False
 
+def endGame():
+    global name, points
+
+    print("Congratualtions, " + str(name) + "! You have " + str(points) + " points." )
+
+    updateHighScores(name, points)
+
+def updateHighScores(name, points):
+    # load high scores
+    highScoresData = loadJSONfile('highscores.json')
+
+    # add to json
+    highScoresData["scores"].append({
+        "name": name,
+        "points": points
+    })
+    
+    with open("highscores.json", "w") as outfile:
+        json.dump(highScoresData, outfile, indent=4)
+
+
+    print(highScoresData["scores"])
+
+    # add score to array
+
+    # sort by score
+
+    # rewrite file
+
 def main():
-    loadJSONfile()
+    loadQuestions()
     inputName()
     runGame()
 
