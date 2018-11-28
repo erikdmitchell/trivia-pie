@@ -4,7 +4,7 @@ import json
 
 questions = ''
 points = 0
-name = ''
+name = 'Steve'
 
 def loadJSONfile():
     global questions
@@ -14,7 +14,11 @@ def loadJSONfile():
     questions = json.loads(questions_json)
 
 def inputName():
-    print("name please")
+    global name
+
+    #name = input("What is your name?")
+
+    print("Welcome,", name)
 
 def runGame():
     outputQuestions()
@@ -42,12 +46,14 @@ def displayQuestion(data):
         print(str(counter) + ".", i) 
         counter = counter + 1
 
+# perhaps this is a while loop?
     # enter answer
     #answer = 2
     #answer = 3
 
     # validate input
     validateInput(answer, totalAnswers)
+# end while loop?
     
     # answer must be subtracted by 1 because array starts at 0
     answer = answer - 1
@@ -63,12 +69,16 @@ def validateInput(answer, totalAnswers):
     # check is number and is between our range, ie 1-4
     if (1 <= answer <= totalAnswers):
         print("in range")
+        # continue
     else:
         print("not in range")
         # ask again for answer
 
+    # return true/false
+
 def main():
     loadJSONfile()
+    inputName()
     runGame()
 
 if __name__ == "__main__":
