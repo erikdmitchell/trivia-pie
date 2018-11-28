@@ -5,20 +5,16 @@
             "points": 10
         },
         {
+            "name": "Joey",
+            "points": 2
+        },
+        {
             "name": "Peach",
             "points": 1
         },
         {
             "name": "Tommy",
             "points": 1
-        },
-        {
-            "name": "Steve",
-            "points": 2
-        },
-        {
-            "name": "Steve",
-            "points": 2
         }
     ]
 }
