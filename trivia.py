@@ -2,13 +2,26 @@
 # Import
 import json
 
+questions = ''
 points = 0
+name = ''
 
 def loadJSONfile():
-    # get the file
+    global questions
+
+    # get the file and load the json
     questions_json=open('questions.json').read()
     questions = json.loads(questions_json)
-    
+
+def inputName():
+    print("name please")
+
+def runGame():
+    outputQuestions()
+
+def outputQuestions():
+    global questions
+
     # loop through questions
     for i in questions["questions"]:
         displayQuestion(i)
@@ -52,6 +65,7 @@ def displayQuestion(data):
   
 def main():
     loadJSONfile()
+    runGame()
 
 if __name__ == "__main__":
     main()
