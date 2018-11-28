@@ -34,9 +34,10 @@ def displayQuestion(data):
     global points
 
     counter = 1
-    answer = 0
+    answer = 2 #default to 0
     totalAnswers = len(data["answers"])
     correctAnswer = data["answer"]
+    validInput = False
 
     # output question
     print(data["question"])
@@ -46,13 +47,19 @@ def displayQuestion(data):
         print(str(counter) + ".", i) 
         counter = counter + 1
 
+    while True:
+        print("input answer")
+        validInput = validateInput(answer, totalAnswers)
+
+        if validInput == True:
+            break
 # perhaps this is a while loop?
     # enter answer
     #answer = 2
     #answer = 3
 
     # validate input
-    validateInput(answer, totalAnswers)
+    
 # end while loop?
     
     # answer must be subtracted by 1 because array starts at 0
@@ -66,15 +73,11 @@ def displayQuestion(data):
     print(points)
 
 def validateInput(answer, totalAnswers):
-    # check is number and is between our range, ie 1-4
+    # check is number and is between our range
     if (1 <= answer <= totalAnswers):
-        print("in range")
-        # continue
-    else:
-        print("not in range")
-        # ask again for answer
+        return True
 
-    # return true/false
+    return False
 
 def main():
     loadJSONfile()
