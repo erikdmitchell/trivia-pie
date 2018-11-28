@@ -9,6 +9,16 @@
                 50
             ],
             "answer": 33
-        }
+        },
+        {
+            "question": "Where is Jimmy?",
+            "answers": [
+                "In a boat",
+                "In a car",
+                "At the store",
+                "At home"
+            ],
+            "answer": "In a car"
+        }        
     ]
 }
