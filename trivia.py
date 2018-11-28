@@ -46,12 +46,8 @@ def displayQuestion(data):
     #answer = 2
     #answer = 3
 
-    # check is number and is between our range, ie 1-4
-    if (1 <= answer <= totalAnswers):
-        print("in range")
-    else:
-        print("not in range")
-        # ask again for answer
+    # validate input
+    validateInput(answer, totalAnswers)
     
     # answer must be subtracted by 1 because array starts at 0
     answer = answer - 1
@@ -62,7 +58,15 @@ def displayQuestion(data):
     print(data["answers"][answer])
     print(correctAnswer)
     print(points)
-  
+
+def validateInput(answer, totalAnswers):
+    # check is number and is between our range, ie 1-4
+    if (1 <= answer <= totalAnswers):
+        print("in range")
+    else:
+        print("not in range")
+        # ask again for answer
+
 def main():
     loadJSONfile()
     runGame()
