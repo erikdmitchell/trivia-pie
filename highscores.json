@@ -1,20 +1,20 @@
 {
     "scores": [
         {
-            "name": "James",
-            "points": 10
+            "points": 10,
+            "name": "James"
         },
         {
-            "name": "Joey",
-            "points": 2
+            "points": 2,
+            "name": "Joey"
         },
         {
-            "name": "Peach",
-            "points": 1
+            "points": 1,
+            "name": "Peach"
         },
         {
-            "name": "Tommy",
-            "points": 1
+            "points": 1,
+            "name": "Tommy"
         }
     ]
 }

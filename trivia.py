@@ -1,10 +1,12 @@
+#!/usr/bin/python
 
 # Import
 import json
 
 questions = ''
 points = 0
-name = 'Steve'
+username = ''
+
 def loadQuestions():
     global questions
 
@@ -19,11 +21,11 @@ def loadJSONfile(filename):
     return json.loads(json_data)
 
 def inputName():
-    global name
+    global username
 
-    #name = input("What is your name?")
-
-    print("Welcome,", name)
+    #username = str(input("Please enter your name: "))
+    
+    print("Welcome, " + username)
 
 def runGame():
     outputQuestions()
@@ -78,20 +80,20 @@ def validateInput(answer, totalAnswers):
     return False
 
 def endGame():
-    global name, points
+    global username, points
 
-    print("Congratualtions, " + str(name) + "! You have " + str(points) + " points." )
+    print("Congratualtions, " + str(username) + "! You have " + str(points) + " points." )
 
-    updateHighScores(name, points)
+    updateHighScores(username, points)
     displayHighScores()
 
-def updateHighScores(name, points):
+def updateHighScores(username, points):
     # load high scores
     highScoresData = loadJSONfile('highscores.json')
 
     # add to json
     # highScoresData["scores"].append({
-    #     "name": name,
+    #     "name": username,
     #     "points": points
     # })
     
@@ -106,6 +108,15 @@ def updateHighScores(name, points):
 def displayHighScores():
     print("high scores here:")
 
+    # load high scores
+    highScoresData = loadJSONfile('highscores.json') 
+
+    print("Name | Points")
+    print("-------------")
+    for i in highScoresData["scores"]:
+        print(str(i["name"]) + " | " + str(i["points"]))
+        print("-------------")
+        
 def main():
     loadQuestions()
     inputName()
